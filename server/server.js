@@ -5,7 +5,6 @@ import { Configuration, OpenAIApi } from 'openai'
 
 dotenv.config({path:'/etc/secrets/.env'})
 
-const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -30,9 +29,9 @@ app.post('/', async (req, res) => {
 
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `What is the meaning of life?`,
+      prompt: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: ",
       temperature: 0.5, // Higher values means the model will take more risks.
-      max_tokens: 100, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
+      max_tokens: 256, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
       top_p: 1, // alternative to sampling with temperature, called nucleus sampling
       n: 1,
       stream: false,
@@ -42,7 +41,16 @@ app.post('/', async (req, res) => {
       early_stopping: false,
       stop: "",
       echo: false,
-      response_format: "text"
+      response_format: "text",
+      allow_create_engine: true,
+      allow_sampling: true,
+      allow_logprobs: true,
+      allow_search_indices: true,
+      allow_view : true,
+      allow_fine_tuning: true,
+      organization: "*",
+      
+
 
     });
 
