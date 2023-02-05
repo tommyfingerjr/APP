@@ -30,27 +30,13 @@ app.post('/', async (req, res) => {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: ",
-      temperature: 0.5, // Higher values means the model will take more risks.
-      max_tokens: 150, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
-      top_p: 1, // alternative to sampling with temperature, called nucleus sampling
-      stream: false,
-      frequency_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-      presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
-      best_of: 1,
-      early_stopping: false,
+      temperature: 0.9,
+      max_tokens: 150,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0.6,
       stop: [" Human:", " AI:"],
-      echo: false,
-      response_format: "text",
-      allow_create_engine: false,
-      allow_sampling: true,
-      allow_logprobs: true,
-      allow_search_indices: false,
-      allow_view : true,
-      allow_fine_tuning: false,
-      organization: "*",
       
-
-
     });
 
     res.status(200).send({
