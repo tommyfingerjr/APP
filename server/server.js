@@ -35,7 +35,7 @@ app.post('/', async (req, res) => {
       top_p: 1, // alternative to sampling with temperature, called nucleus sampling
       stream: false,
       frequency_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-      presence_penalty: 06, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+      presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
       best_of: 1,
       early_stopping: false,
       stop: [" Human:", " AI:"],
