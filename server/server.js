@@ -31,23 +31,22 @@ app.post('/', async (req, res) => {
       model: "text-davinci-003",
       prompt: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: ",
       temperature: 0.5, // Higher values means the model will take more risks.
-      max_tokens: 256, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
+      max_tokens: 150, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
       top_p: 1, // alternative to sampling with temperature, called nucleus sampling
-      n: 1,
       stream: false,
-      frequency_penalty: 2, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-      presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+      frequency_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+      presence_penalty: 06, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
       best_of: 1,
       early_stopping: false,
-      stop: "",
+      stop: [" Human:", " AI:"],
       echo: false,
       response_format: "text",
-      allow_create_engine: true,
+      allow_create_engine: false,
       allow_sampling: true,
       allow_logprobs: true,
-      allow_search_indices: true,
+      allow_search_indices: false,
       allow_view : true,
-      allow_fine_tuning: true,
+      allow_fine_tuning: false,
       organization: "*",
       
 
