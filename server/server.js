@@ -29,14 +29,17 @@ app.post('/', async (req, res) => {
 
 
     const response = await openai.createCompletion({
-      model: "davinci-instruct-beta:2.0.0",
-      prompt: "what is p53 gene\n\nThe p53 gene is a tumor suppressor gene that is responsible for regulating the cell cycle and preventing the growth of tumors. It produces a protein that acts as a \"guardian of the genome\" and is involved in a number of cellular processes, including DNA repair, apoptosis (programmed cell death), and cell cycle control. Mutations in the p53 gene can lead to the development of cancer.",
+      model: "text-davinci-003",
+      prompt: `"what is p53 gene\n\nThe p53 gene is a tumor suppressor gene that is responsible for regulating the cell cycle and preventing the growth of tumors. It produces a protein that acts as a \"guardian of the genome\" and is involved in a number of cellular processes, including DNA repair, apoptosis (programmed cell death), and cell cycle control. Mutations in the p53 gene can lead to the development of cancer."`,
       temperature: 1, // Higher values means the model will take more risks.
-      max_tokens: 4000, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
+      max_tokens: 200, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
       top_p: 1, // alternative to sampling with temperature, called nucleus sampling
-      frequency_penalty: 1, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-      presence_penalty: 1, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
-    
+      frequency_penalty: 2, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+      presence_penalty: 2, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+      allow_sampling: true,
+      allow_logprobs: true,
+
+
 
 
     });
