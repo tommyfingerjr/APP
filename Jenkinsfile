@@ -2,21 +2,32 @@ pipeline {
     agent any 
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building..'
+                checkout scm
             }
         }
-        stage('Test') {
+        stage('Install dependencies') {
             steps {
-                echo 'Testing..'
+                sh 'yarn'
             }
         }
-        stage('Deploy') {
+        stage('Eslint fix and check') {
             steps {
-                echo 'Deploying....'
+                sh 'yarn eslint:fix'
+            }
+        }
+        stage('Create Spring Configs Dev file for tests running') {
+            steps {
+                sh './prepare-tests.sh'
+            }
+        }
+        stage('Run tests') {
+            steps {
+                sh 'yarn test --watchAll=false'
             }
         }
     }
 }
+
 
